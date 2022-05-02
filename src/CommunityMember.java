@@ -6,6 +6,7 @@ public class CommunityMember {
 	private ArrayList<Float> moneyOverTime;
     Random random = new Random();
 	private int red, green, blue;
+	private Set<Integer> lottoNumbers;
 
 	//constructor
 	public CommunityMember(CMemberKind pK, float startFunds) {
@@ -16,6 +17,7 @@ public class CommunityMember {
 		this.red = this.random.nextInt(100);
 		this.green = this.random.nextInt(100);
 		this.blue = this.random.nextInt(100);
+		this.lottoNumbers = new HashSet<Integer>();
 
 		//overall blue tint to POORLY_PAID	
 		if (this.kind == CMemberKind.WELL_PAID) {
@@ -35,5 +37,25 @@ public class CommunityMember {
 	public void updateMoneyEachYear() {
 		this.moneyOverTime.add(this.money);
 	}
+
+	public void addMoney(float amount) {
+		this.money += amount;
+	}
+
+	public Set<Integer> getLottoNumbers() {
+		return this.lottoNumbers;
+	}
+
+	public void playRandom() {
+		//generates 5 numbers between 1 and 42 (inclusive)
+		this.lottoNumbers.clear();
+		int min = 1;
+		int max = 42;
+		while (this.lottoNumbers.size() < 5) {
+			int randomNum = this.random.nextInt(min, max + 1);
+			this.lottoNumbers.add(randomNum);
+		}
+	}
+
 
 }
