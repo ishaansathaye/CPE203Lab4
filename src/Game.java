@@ -6,7 +6,7 @@ public class Game {
 
     private Set<Integer> winningNumbers;
     Random random = new Random();
-    private float money = -1;
+    private float money;
 
     public Game() {
 
@@ -46,15 +46,21 @@ public class Game {
 
     public float monetaryResult(Set<Integer> numbers) {
 
+        this.money = -1;
+
         int numMatches = this.matches(numbers);
 
         if (numMatches == 2) {
             this.money += 1.0f;
+            this.money += 1.0f;
         } else if (numMatches == 3) {
+            this.money += 1.0f;
             this.money += 10.86f;
         } else if (numMatches == 4) {
+            this.money += 1.0f;
             this.money += 197.53;
         } else if (numMatches == 5) {
+            this.money += 1.0f;
             this.money += 212534.83f;
         }
 

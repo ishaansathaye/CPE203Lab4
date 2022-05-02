@@ -112,19 +112,20 @@ public final class CommunityLSim {
     private void randomUniqIndx(int numI, int startRange, int endRange, Set<Integer> membersList) {
 
         int temp = 0;
+        int range = endRange - startRange + 1;
 
         while (temp < numI) {
-            int randomNum = this.random.nextInt(startRange, endRange);
+            int randomNum = this.random.nextInt(range) + startRange;
             if (!membersList.contains(randomNum)) {
-                membersList.add(randomNum);
                 temp++;
             }
+            membersList.add(randomNum);
         }
     }
 
     public void simulatePlay() {
         for (Integer temp: membersEachYear) {
-            communityMembers.get(temp).getLottoNumbers();
+            communityMembers.get(temp).playRandom();
         }
     }
 
@@ -148,7 +149,7 @@ public final class CommunityLSim {
         randomUniqIndx(NUM_WELL_PAID_SCHOLARSHIP, WELL_PAID_START, WELL_PAID_END, scholarshipGroup);
         
         //Finding the person that receives the "scholarship"
-        int chosenIndex = random.nextInt(NUM_POORLY_PAID_SCHOLARSHIP + NUM_WELL_PAID_SCHOLARSHIP);
+        int chosenIndex = this.random.nextInt(NUM_POORLY_PAID_SCHOLARSHIP + NUM_WELL_PAID_SCHOLARSHIP);
         Integer[] scholarshipGroupArray = scholarshipGroup.toArray(new Integer[scholarshipGroup.size()]);
         int memberIndex = scholarshipGroupArray[chosenIndex];
         communityMembers.get(memberIndex).addMoney(amount);

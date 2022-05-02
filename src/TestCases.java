@@ -67,8 +67,6 @@ public class TestCases {
         playerNumbers.add(4);
         playerNumbers.add(9);
 
-        game.setMoney(game.getMoney()+1.0f); // +1 for playing a turn
-
         assertEquals(10.86f, game.monetaryResult(playerNumbers), 0.001);
 
     }
